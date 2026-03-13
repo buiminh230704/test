@@ -80,3 +80,38 @@ Chứa các dữ liệu bộ luật (dataset) đã được làm sạch và lưu
 - 📄 `config.json`: Cấu hình của app (tên loại model nhúng, tham số `top_k` kết quả cần lấy,...).
 - 🗃️ `faiss.index`: Chứa vector không gian nhúng của dữ liệu luật sử dụng qua thư viện FAISS của Meta. Giúp tìm kiếm ngữ nghĩa song song hàng vạn câu luật trong tíc tắc (similarity search).
 - 📦 `docstore.pkl`: Tệp định dạng Pickle chứa bộ từ điển văn bản luật thô. Khi bộ FAISS tìm thấy ID Vector phù hợp, `docstore` sẽ trích xuất ID đó thành một đoạn chữ tiếng Việt thực tế và liên kết URL để tạo thành cơ sở tham chiếu (citation).
+
+---
+
+## 🗂️ Sơ Đồ Cây Thư Mục Dự Án (`laws (1)/`)
+
+Dưới đây là cây thư mục (Project Tree) mô tả toàn bộ thư mục và file cấu thành dự án, giúp dễ hình dung hơn về vị trí của 3 nhánh kể trên:
+
+```text
+laws (1)/
+│
+├── app/                              # Nhánh Giao diện & Xử lý (Code lõi)
+│   ├── GUI.py                        # Giao diện web Gradio (Nhánh 1)
+│   └── rag_engine.py                 # Động cơ RAG xử lý ngầm (Nhánh 2)
+│
+├── artifacts/                        # Nhánh Dữ liệu tĩnh (Nhánh 3)
+│   ├── config.json                   # File config tham số
+│   ├── docstore.pkl                  # Kho ánh xạ text luật
+│   └── faiss.index                   # Cơ sở dữ liệu Vector của FAISS
+│
+├── data/                             # Dữ liệu dạng thô (Raw Data)
+│   ├── dvc.json                      # Bộ sinh câu hỏi để kiểm thử
+│   ├── dvc_test.json                 # Bộ dữ liệu test
+│   └── sent_truncated_vbpl_legal_only.csv # Dữ liệu luật gốc (CSV)
+│
+├── notebooks/                        # Chứa các file jupyter chạy thử nghiệm
+│   └── Chatbot_Laws.ipynb            # Notebook thử RAG
+│
+├── demo/                             # Có thể chứa file ảnh/video demo
+├── report/                           # Thư mục chứa báo cáo bài tập
+├── slide/                            # Chứa slide thuyết trình và các sơ đồ
+│
+├── requirements.txt                  # Danh sách thư viện Python cần dùng
+├── README.md                         # Hướng dẫn chi tiết cách cài đặt & sử dụng
+└── kien_truc_he_thong.md             # File bạn đang đọc (Kiến trúc dự án)
+```
